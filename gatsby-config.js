@@ -4,6 +4,19 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-mixpanel',
+      options: {
+        apiToken: process.env.GATSBY_MIXPANEL_KEY,
+        enableOnDevMode: true,
+        pageViews: {
+          '/about': 'Page about view',
+          '/blog': 'Page blog view',
+          '/product': 'Page blog view',
+          '/404': 'Page 404 view',
+        }
+      },
+    },
     'gatsby-plugin-sass',
     {
       resolve: 'gatsby-source-filesystem',

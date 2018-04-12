@@ -17,6 +17,14 @@ export default class IndexPage extends React.Component {
     window.netlifyIdentity.init();
   }
 
+  // Init and send the Mixpanel event
+  componentDidMount() {
+    if (process.env.GATSBY_MIXPANEL_KEY) {
+      this.context.mixpanel.init(process.env.GATSBY_MIXPANEL_KEY)
+      this.context.mixpanel.track("cms.view:homepage")
+    }
+  }
+
   render() {
     const { data } = this.props;
     const { edges: posts } = data.allMarkdownRemark;
